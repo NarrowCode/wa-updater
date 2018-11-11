@@ -10,19 +10,23 @@ written in Python.
 **pip**
 
 Using pip to install the rest of the dependencies
+
     easy_install pip
 
 **BeautifulSoup**
 
 Used to parse the website
+
     pip install BeautifulSoup4
 
 **selenium**
+
 Used for browser emulation with .js integration
 
     pip install selenium
 
 **selenium webdriver for Firefox**
+
 Tells selenium to use Firefox as a Browser
 
     curl -OL https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-macos.tar.gz 

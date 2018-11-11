@@ -1,7 +1,10 @@
 # WA-Updater
 
-An automatic updating tool for weakauras from wago.io,
+An updating tool for weakauras from wago.io,
 written in Python.
+
+Generates a new textfile for each selected wago.io weakaura
+with its current import string.
 
 ---
 
@@ -41,6 +44,11 @@ On mac, the folder can be added to /etc/paths to accomplish this
 ## Usage
 
 Add the links to a wago.io page to the file wago-links.txt
+
+The format must be
+
+    link-to-wago.io,description
+
 Call the scrapper using
 
     python scrapper.py

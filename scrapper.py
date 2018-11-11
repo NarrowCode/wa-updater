@@ -2,35 +2,29 @@
 # Currently WIP
 
 # Import libs
-import urllib2
 from bs4 import BeautifulSoup
+from selenium.webdriver import Firefox
+from selenium.webdriver.firefox.options import Options
 
-# URL
-url = "http://wago.io/NyKyPWbZf"
+# Read input URLs from file
+urls = []
+file = open("wago-links.txt", "r")
+for line in file:
+   urls.append(line) 
 
-# Header to avoid 403 error response
-hdr = {'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.9',
-       'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64)',
-       'Connection': 'keep-alive',
-       'Accept-Encoding': 'none',
-       'Accept-Langage': 'en-US,en;q=0.8'}
+# Browser configuration
+opts = Options()
+opts.set_headless()
+assert opts.headless
+browser = Firefox(options=opts)
 
-# Request with url and header
-req = urllib2.Request(url, headers=hdr)
+for url in urls:
+    browser.get(url)
 
-# Query the website
-try:
-    page = urllib2.urlopen(req)
-except urllib2.HTTPError, e:
-    print e.fp.read()
+    # Read into big soup
+    soup = BeautifulSoup(browser.page_source, 'html.parser')
 
-# Print page
-print page.read()
+    # Go through html soup to find the import string
+    wago_string = soup.find(id="wago-importstring").text.strip()
 
-# Parse
-soup = BeautifulSoup(page, 'html.parser')
-
-# Go through html soup to find import string
-wago_string = soup.find(id="wago-importstring")
-
-print wago_string
+    print wago_string

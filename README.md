@@ -1,3 +1,7 @@
+## Abandoned Project
+
+This project was abandoned because an official version now exists! Repo kept for reference :)
+
 # WA-Updater
 
 An updating tool for weakauras from wago.io,
